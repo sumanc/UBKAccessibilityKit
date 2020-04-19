@@ -160,7 +160,7 @@ typedef void (^AnimationCompletionBlock)(void);
     [self addGestureRecognizer:self.longPressGesture];
     
     self.hideButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *closeImage = [[UIImage imageNamed:@"icon_cross" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage *closeImage = [[UIImage imageNamed:@"icon_cross" inBundle:nil compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [self.hideButton setImage:closeImage forState:UIControlStateNormal];
     [self.hideButton setTintColor:[UIColor lightGrayColor]];
     [self.hideButton addTarget:self action:@selector(hideInspector) forControlEvents:UIControlEventTouchUpInside];

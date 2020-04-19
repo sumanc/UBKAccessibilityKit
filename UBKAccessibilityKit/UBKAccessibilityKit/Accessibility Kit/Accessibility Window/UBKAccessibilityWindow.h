@@ -27,12 +27,17 @@
 ///TODO: fix this
 //Enable/Disable the accessibility inspector. Setting this to false will disable the custom UIWindow
 @property (nonatomic) BOOL enableInspector;
-
+@property (nonatomic) UIWindow *mainWindow;
 //Accessibility button shown on screen, button shows warnings and has an active and inactive state.
 @property (nonatomic) UBKAccessibilityButton *inspectorButton;
 
 //Configures the screenshot service, screenshot service is only available in iOS 13+ and provides an Accessibility Report when a screenshot is taken.
 - (void)configureScreenshotService;
+- (void)becameKeyWindow:(UIWindow *)window;
+- (void)viewAppeared;
+- (BOOL)sendEvent:(UIEvent *)event source:(UIWindow *)source;
+
++ (UBKAccessibilityWindow *)sharedInstance;
 
 @end
 

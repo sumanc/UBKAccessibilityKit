@@ -77,8 +77,8 @@
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 88;
-    [self.tableView registerNib:[UINib nibWithNibName:@"UBKColourTableViewCell" bundle:[NSBundle bundleForClass:[UBKColourTableViewCell class]]] forCellReuseIdentifier:@"UBKColourTableViewCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"UBKContrastTableViewCell" bundle:[NSBundle bundleForClass:[UBKContrastTableViewCell class]]] forCellReuseIdentifier:@"UBKContrastTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"UBKColourTableViewCell" bundle:nil] forCellReuseIdentifier:@"UBKColourTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"UBKContrastTableViewCell" bundle:nil] forCellReuseIdentifier:@"UBKContrastTableViewCell"];
     [self.tableView reloadData];
 }
 

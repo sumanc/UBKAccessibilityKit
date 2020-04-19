@@ -120,19 +120,19 @@
         [self showWarning];
         if (self.cellProperty.warningLevel == UBKAccessibilityWarningLevelHigh)
         {
-            UIImage *warningImage = [UIImage imageNamed:kUBKAccessibilityWarningLevelImageNameHigh inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
+            UIImage *warningImage = [UIImage imageNamed:kUBKAccessibilityWarningLevelImageNameHigh inBundle:nil compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
             self.warningImageView.image = [warningImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             self.warningImageView.tintColor = [UIColor ubk_warningLevelHighBackgroundColour];
         }
         else if (self.cellProperty.warningLevel == UBKAccessibilityWarningLevelMedium)
         {
-            UIImage *warningImage = [UIImage imageNamed:kUBKAccessibilityWarningLevelImageNameMedium inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
+            UIImage *warningImage = [UIImage imageNamed:kUBKAccessibilityWarningLevelImageNameMedium inBundle:nil compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
             self.warningImageView.image = [warningImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             self.warningImageView.tintColor = [UIColor ubk_warningLevelMediumBackgroundColour];
         }
         else //Low warnings
         {
-            UIImage *warningImage = [UIImage imageNamed:kUBKAccessibilityWarningLevelImageNameLow inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
+            UIImage *warningImage = [UIImage imageNamed:kUBKAccessibilityWarningLevelImageNameLow inBundle:nil compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
             self.warningImageView.image = [warningImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             self.warningImageView.tintColor = [UIColor ubk_warningLevelLowBackgroundColour];
         }

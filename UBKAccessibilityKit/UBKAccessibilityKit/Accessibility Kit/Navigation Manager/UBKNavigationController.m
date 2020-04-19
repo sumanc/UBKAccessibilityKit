@@ -34,7 +34,7 @@
     {
         self.navigationBar.translucent = false;
         self.elementsViewController = rootViewController;
-        self.inspectorViewController = [[UBKAccessibilityInspectorViewController alloc]initWithNibName:@"UBKAccessibilityInspectorViewController" bundle:[NSBundle bundleForClass:[UBKAccessibilityInspectorViewController class]]];
+        self.inspectorViewController = [[UBKAccessibilityInspectorViewController alloc]initWithNibName:@"UBKAccessibilityInspectorViewController" bundle:nil];
     }
     return self;
 }

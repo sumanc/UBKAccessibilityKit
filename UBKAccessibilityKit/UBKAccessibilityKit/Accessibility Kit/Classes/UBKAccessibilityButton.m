@@ -48,7 +48,8 @@
         self.layer.zPosition = 1000;
         
         //Configure the image for the inspector button. Get the accessibility icon for the button from the correct bundle.
-        UIImage *imageTmp = [[UIImage imageNamed:@"icon_accessibilitykit" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        UIImage *imageTmp = [UIImage imageNamed:@"icon_accessibilitykit.png"];
+//        UIImage *imageTmp = [[UIImage imageNamed:@"icon_accessibilitykit.png" inBundle:nil compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
         self.accessibilityImageView = [[UIImageView alloc]initWithImage:imageTmp];
         [self.accessibilityImageView setFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
         self.accessibilityImageView.contentMode = UIViewContentModeScaleAspectFit;

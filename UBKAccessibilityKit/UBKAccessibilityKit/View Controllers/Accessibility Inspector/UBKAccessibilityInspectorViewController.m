@@ -67,9 +67,9 @@ typedef enum : NSUInteger {
     [self configureNavBarButtons];
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    [self.tableView registerNib:[UINib nibWithNibName:@"UBKAccessibilityTitleValueTableViewCell" bundle:[NSBundle bundleForClass:[UBKAccessibilityTitleValueTableViewCell class]]] forCellReuseIdentifier:@"UBKAccessibilityTitleValueTableViewCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"UBKColourTableViewCell" bundle:[NSBundle bundleForClass:[UBKColourTableViewCell class]]] forCellReuseIdentifier:@"UBKColourTableViewCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"UBKContrastTableViewCell" bundle:[NSBundle bundleForClass:[UBKContrastTableViewCell class]]] forCellReuseIdentifier:@"UBKContrastTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"UBKAccessibilityTitleValueTableViewCell" bundle:nil] forCellReuseIdentifier:@"UBKAccessibilityTitleValueTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"UBKColourTableViewCell" bundle:nil] forCellReuseIdentifier:@"UBKColourTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"UBKContrastTableViewCell" bundle:nil] forCellReuseIdentifier:@"UBKContrastTableViewCell"];
     
     self.showingPicker = false;
     self.view.shouldGroupAccessibilityChildren = true;
@@ -363,7 +363,7 @@ typedef enum : NSUInteger {
     {
         if (accessibilityProperty.canUpdateUI)
         {
-            UBKColourPickerTableViewController *viewController = [[UBKColourPickerTableViewController alloc]initWithNibName:@"UBKColourPickerTableViewController" bundle:[NSBundle bundleForClass:[UBKColourPickerTableViewController class]]];
+            UBKColourPickerTableViewController *viewController = [[UBKColourPickerTableViewController alloc]initWithNibName:@"UBKColourPickerTableViewController" bundle:nil];
             viewController.selectedElement = self.selectedItem;
             if ([accessibilityProperty.displayTitle isEqualToString:kUBKAccessibilityAttributeTitle_BackgroundColour])
             {
@@ -389,7 +389,7 @@ typedef enum : NSUInteger {
     }
     else if ([accessibilitySection.headerTitle isEqualToString:kUBKAccessibilityAttributeTitle_Warning_Header])
     {
-        UBKAccessibilitySuggestionViewController *viewController = [[UBKAccessibilitySuggestionViewController alloc]initWithNibName:@"UBKAccessibilitySuggestionViewController" bundle:[NSBundle bundleForClass:[UBKAccessibilitySuggestionViewController class]]];
+        UBKAccessibilitySuggestionViewController *viewController = [[UBKAccessibilitySuggestionViewController alloc]initWithNibName:@"UBKAccessibilitySuggestionViewController" bundle:nil];
         viewController.accessibilityProperty = accessibilityProperty;
         viewController.delegate = self;
         self.loadingDetailView = true;

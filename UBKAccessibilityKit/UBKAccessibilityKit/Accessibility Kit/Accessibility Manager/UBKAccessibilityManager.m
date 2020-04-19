@@ -58,7 +58,7 @@ static const UBKAccessibilityManager *_ubkAccessibilityManager = nil;
     if (self = [super init])
     {
         //Configure the navigation of the inspector.
-        UBKAccessibilityElementsTableViewController *elementsViewController = [[UBKAccessibilityElementsTableViewController alloc]initWithNibName:@"UBKAccessibilityElementsTableViewController" bundle:[NSBundle bundleForClass:[UBKAccessibilityElementsTableViewController class]]];
+        UBKAccessibilityElementsTableViewController *elementsViewController = [[UBKAccessibilityElementsTableViewController alloc]initWithNibName:@"UBKAccessibilityElementsTableViewController" bundle:nil];
         self.navigationViewController = [[UBKNavigationController alloc]initWithUIElementsViewController:elementsViewController];
         
         self.inspectorContainerView = [[UBKAccessibilityInspectorContainerView alloc]initWithFrame:CGRectMake(0, 0, self.navigationViewController.view.frame.size.width, self.navigationViewController.view.bounds.size.height/2)];
@@ -117,12 +117,12 @@ static const UBKAccessibilityManager *_ubkAccessibilityManager = nil;
     }
 
     //This will cause the first responder to resign.
-    [self.window.rootViewController.view endEditing:true];
+    [self.window.mainWindow.rootViewController.view endEditing:true];
     
     //Dismiss if presented view is first responder
-    if (self.window.rootViewController.presentedViewController)
+    if (self.window.mainWindow.rootViewController.presentedViewController)
     {
-        [self.window.rootViewController.presentedViewController.view endEditing:true];
+        [self.window.mainWindow.rootViewController.presentedViewController.view endEditing:true];
     }
 }
 
@@ -132,7 +132,7 @@ static const UBKAccessibilityManager *_ubkAccessibilityManager = nil;
     [self.accessibilityFilter.filteredObjects removeAllObjects];
     [self configureAccessibiltyViewIgnoreList];
     
-    for (UIView *viewTmp in self.window.subviews)
+    for (UIView *viewTmp in self.window.mainWindow.subviews)
     {
         if (![self.accessibilityViews containsObject:viewTmp])
         {
@@ -165,7 +165,7 @@ static const UBKAccessibilityManager *_ubkAccessibilityManager = nil;
 
 - (void)removeAllOutlines
 {
-    for (UIView *viewTmp in self.window.subviews)
+    for (UIView *viewTmp in self.window.mainWindow.subviews)
     {
         [self removeOutlineFromView:viewTmp];
     }
@@ -192,15 +192,15 @@ static const UBKAccessibilityManager *_ubkAccessibilityManager = nil;
     _window = window;
     
     //Add shadow view
-    CGFloat inspectorWidth = self.window.frame.size.width;
+    CGFloat inspectorWidth = self.window.mainWindow.frame.size.width;
     if (inspectorWidth > maxWidth)
     {
         inspectorWidth = maxWidth;
     }
-    [self.inspectorContainerView setFrame:CGRectMake(0, self.window.frame.size.height, inspectorWidth, self.window.frame.size.height/2)];
-    self.inspectorContainerView.originalHeight = self.window.frame.size.height/2;
+    [self.inspectorContainerView setFrame:CGRectMake(0, self.window.mainWindow.frame.size.height, inspectorWidth, self.window.mainWindow.frame.size.height/2)];
+    self.inspectorContainerView.originalHeight = self.window.mainWindow.frame.size.height/2;
     self.inspectorContainerView.originalWidth = inspectorWidth;
-    [self.window addSubview:self.inspectorContainerView];
+    [self.window.mainWindow addSubview:self.inspectorContainerView];
     
     [self configureAccessibiltyViewIgnoreList];
     [self configureAllUIElments];
@@ -234,7 +234,7 @@ static const UBKAccessibilityManager *_ubkAccessibilityManager = nil;
     for (UITouch *touch in touches)
     {
         CGRect buttonRectTmp = self.inspectorContainerView.frame;
-        CGPoint pointTmp = [touch locationInView:self.window];
+        CGPoint pointTmp = [touch locationInView:self.window.mainWindow];
 
         //Check if user touched inside inspector view controller
         if ((CGRectContainsPoint(buttonRectTmp, pointTmp)) && (self.navigationViewController.isShowingInspector))
@@ -243,7 +243,7 @@ static const UBKAccessibilityManager *_ubkAccessibilityManager = nil;
         }
         else
         {
-            for (UIView *view in self.window.subviews)
+            for (UIView *view in self.window.mainWindow.subviews)
             {
                 //Make sure we're not adding any of the inspector views or helper views.
                 if ((![self.accessibilityViews containsObject:view]) && (![view isKindOfClass:[UBKAccessibilityTouchView class]]))
@@ -299,7 +299,7 @@ static const UBKAccessibilityManager *_ubkAccessibilityManager = nil;
     }
     if (CGRectContainsPoint(buttonRectTmp, pointTmp))
     {
-        if (view != self.window.rootViewController.view)
+        if (view != self.window.mainWindow.rootViewController.view)
         {
             //Don't interact with Apple private classes
             if ([self canAddView:view])

@@ -113,25 +113,25 @@ typedef enum : NSUInteger {
         
         if (warningLevel == UBKAccessibilityWarningLevelHigh)
         {
-            UIImage *warningImage = [UIImage imageNamed:kUBKAccessibilityWarningLevelImageNameHigh inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
+            UIImage *warningImage = [UIImage imageNamed:kUBKAccessibilityWarningLevelImageNameHigh inBundle:nil compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
             cell.imageView.image = [warningImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             cell.imageView.tintColor = [UIColor ubk_warningLevelHighBackgroundColour];
         }
         else if (warningLevel == UBKAccessibilityWarningLevelMedium)
         {
-            UIImage *warningImage = [UIImage imageNamed:kUBKAccessibilityWarningLevelImageNameMedium inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
+            UIImage *warningImage = [UIImage imageNamed:kUBKAccessibilityWarningLevelImageNameMedium inBundle:nil compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
             cell.imageView.image = [warningImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             cell.imageView.tintColor = [UIColor ubk_warningLevelMediumBackgroundColour];
         }
         else if (warningLevel == UBKAccessibilityWarningLevelLow)
         {
-            UIImage *warningImage = [UIImage imageNamed:kUBKAccessibilityWarningLevelImageNameLow inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
+            UIImage *warningImage = [UIImage imageNamed:kUBKAccessibilityWarningLevelImageNameLow inBundle:nil compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
             cell.imageView.image = [warningImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             cell.imageView.tintColor = [UIColor ubk_warningLevelLowBackgroundColour];
         }
         else
         {
-            UIImage *warningImage = [UIImage imageNamed:kUBKAccessibilityWarningLevelImageNamePass inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
+            UIImage *warningImage = [UIImage imageNamed:kUBKAccessibilityWarningLevelImageNamePass inBundle:nil compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
             cell.imageView.image = [warningImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             cell.imageView.tintColor = [UIColor ubk_warningLevelPassBackgroundColour];
         }

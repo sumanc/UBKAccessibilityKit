@@ -26,23 +26,23 @@ FOUNDATION_EXPORT double UBKAccessibilityKitVersionNumber;
 //! Project version string for UBKAccessibilityKit.
 FOUNDATION_EXPORT const unsigned char UBKAccessibilityKitVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <UBKAccessibilityKit/PublicHeader.h>
+// In this header, you should import all the public headers of your framework using statements like #import "PublicHeader.h"
 
-#import <UBKAccessibilityKit/UBKAccessibilitySection.h>
-#import <UBKAccessibilityKit/UBKAccessibilityProperty.h>
-#import <UBKAccessibilityKit/UBKAccessibilityProperty.h>
-#import <UBKAccessibilityKit/UBKAccessibilityWindow.h>
-#import <UBKAccessibilityKit/UBKAccessibilityManager.h>
-#import <UBKAccessibilityKit/UBKAccessibilityValidation.h>
+#import "UBKAccessibilitySection.h"
+#import "UBKAccessibilityProperty.h"
+#import "UBKAccessibilityProperty.h"
+#import "UBKAccessibilityWindow.h"
+#import "UBKAccessibilityManager.h"
+#import "UBKAccessibilityValidation.h"
 
-#import <UBKAccessibilityKit/UIColor+HelperMethods.h>
-#import <UBKAccessibilityKit/NSArray+HelperMethods.h>
+#import "UIColor+HelperMethods.h"
+#import "NSArray+HelperMethods.h"
 
-#import <UBKAccessibilityKit/UIView+UBKAccessibility.h>
-#import <UBKAccessibilityKit/UILabel+UBKAccessibility.h>
-#import <UBKAccessibilityKit/UIButton+UBKAccessibility.h>
-#import <UBKAccessibilityKit/UITextField+UBKAccessibility.h>
-#import <UBKAccessibilityKit/UITextView+UBKAccessibility.h>
-#import <UBKAccessibilityKit/UIImageView+UBKAccessibility.h>
-#import <UBKAccessibilityKit/UISwitch+UBKAccessibility.h>
-#import <UBKAccessibilityKit/UISlider+UBKAccessibility.h>
+#import "UIView+UBKAccessibility.h"
+#import "UILabel+UBKAccessibility.h"
+#import "UIButton+UBKAccessibility.h"
+#import "UITextField+UBKAccessibility.h"
+#import "UITextView+UBKAccessibility.h"
+#import "UIImageView+UBKAccessibility.h"
+#import "UISwitch+UBKAccessibility.h"
+#import "UISlider+UBKAccessibility.h"

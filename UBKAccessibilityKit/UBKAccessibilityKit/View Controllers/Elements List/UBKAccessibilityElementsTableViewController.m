@@ -159,7 +159,7 @@
     self.title = @"UI Elements";
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 88;
-    [self.tableView registerNib:[UINib nibWithNibName:@"UBKUIElementTableViewCell" bundle:[NSBundle bundleForClass:[UBKUIElementTableViewCell class]]] forCellReuseIdentifier:@"UBKUIElementTableViewCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"UBKUIElementTableViewCell" bundle:nil] forCellReuseIdentifier:@"UBKUIElementTableViewCell"];
     self.selectedUIElementIndex = [NSIndexPath indexPathForRow:INT_MAX inSection:0];
 
     UIRefreshControl * refreshControl = [[UIRefreshControl alloc]init];
@@ -169,11 +169,11 @@
     self.highlightButton.accessibilityLabel = @"Outline warnings: off";
     self.highlightButton.accessibilityHint = @"Outline UI elements with warnings.";
 
-    UIImage *imageTmpFilter = [[UIImage imageNamed:@"icon_filter" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage *imageTmpFilter = [[UIImage imageNamed:@"icon_filter" inBundle:nil compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     self.filterButton = [[UIBarButtonItem alloc]initWithImage:imageTmpFilter style:UIBarButtonItemStylePlain target:self action:@selector(showFilterView)];
     self.filterButton.accessibilityLabel = @"Filter UI elements";
     
-    UIImage *imageTmp = [[UIImage imageNamed:@"icon_settings" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage *imageTmp = [[UIImage imageNamed:@"icon_settings" inBundle:nil compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     self.settingsButton = [[UIBarButtonItem alloc]initWithImage:imageTmp style:UIBarButtonItemStylePlain target:self action:@selector(showSettings)];
     self.settingsButton.accessibilityLabel = @"Settings";
     
@@ -196,13 +196,13 @@
 
 - (void)showSettings
 {
-    UBKAccessibilitySettingsViewController *viewController = [[UBKAccessibilitySettingsViewController alloc]initWithNibName:@"UBKAccessibilitySettingsViewController" bundle:[NSBundle bundleForClass:[UBKAccessibilityFilterTableViewController class]]];
+    UBKAccessibilitySettingsViewController *viewController = [[UBKAccessibilitySettingsViewController alloc]initWithNibName:@"UBKAccessibilitySettingsViewController" bundle:nil];
     [self.navigationController pushViewController:viewController animated:true];
 }
 
 - (void)showFilterView
 {
-    UBKAccessibilityFilterTableViewController *viewController = [[UBKAccessibilityFilterTableViewController alloc]initWithNibName:@"UBKAccessibilityFilterTableViewController" bundle:[NSBundle bundleForClass:[UBKAccessibilityFilterTableViewController class]]];
+    UBKAccessibilityFilterTableViewController *viewController = [[UBKAccessibilityFilterTableViewController alloc]initWithNibName:@"UBKAccessibilityFilterTableViewController" bundle:nil];
     [self.navigationController pushViewController:viewController animated:true];
 }
 

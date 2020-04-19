@@ -38,7 +38,7 @@
     [super viewDidLoad];
 
     self.collectionView.scrollEnabled = false;
-    [self.collectionView registerNib:[UINib nibWithNibName:@"UBKReportUIElementCollectionViewCell" bundle:[NSBundle bundleForClass:[self class]]] forCellWithReuseIdentifier:@"UBKReportUIElementCollectionViewCell"];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"UBKReportUIElementCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"UBKReportUIElementCollectionViewCell"];
     self.collectionView.collectionViewLayout = self.flowLayout;
     
     self.viewControllerNameLabel.text = self.classString;

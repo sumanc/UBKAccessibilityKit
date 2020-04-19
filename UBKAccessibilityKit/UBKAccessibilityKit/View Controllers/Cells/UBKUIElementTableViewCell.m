@@ -192,19 +192,19 @@
     }
     
     //Displays the icon for the class, eg UIImageView, UIView, UIButton etc
-    UIImage *classImage = [UIImage imageNamed:self.elementView.ubk_classIconName inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
+    UIImage *classImage = [UIImage imageNamed:self.elementView.ubk_classIconName inBundle:nil compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
     
     //If no image is returned for the class, use the defect unknown icon
     if (classImage == nil)
     {
-        classImage = [UIImage imageNamed:@"icon_unknown" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
+        classImage = [UIImage imageNamed:@"icon_unknown" inBundle:nil compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
     }
     self.classImageView.image = classImage;
 }
 
 - (void)configureCellForElement:(NSString *)imageName withWarningColour:(UIColor *)warningColour withWarningTitle:(NSString *)warningTitle withBackgroundColour:(UIColor *)backgroundColour
 {
-    UIImage *warningImage = [UIImage imageNamed:imageName inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
+    UIImage *warningImage = [UIImage imageNamed:imageName inBundle:nil compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
     self.warningImageView.image = [warningImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     self.warningImageView.tintColor = warningColour;
     

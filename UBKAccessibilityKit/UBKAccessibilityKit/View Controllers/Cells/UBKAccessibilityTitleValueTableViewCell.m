@@ -35,7 +35,7 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    UIImage *warningImage = [UIImage imageNamed:@"icon_warning_red" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
+    UIImage *warningImage = [UIImage imageNamed:@"icon_warning_red" inBundle:nil compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
     self.warningIconImageView.image = [warningImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     self.warningIconImageView.tintColor = [UIColor ubk_warningLevelHighBackgroundColour];
     
@@ -72,21 +72,21 @@
         {
             case UBKAccessibilityWarningLevelHigh:
             {
-                UIImage *warningImage = [UIImage imageNamed:kUBKAccessibilityWarningLevelImageNameHigh inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
+                UIImage *warningImage = [UIImage imageNamed:kUBKAccessibilityWarningLevelImageNameHigh inBundle:nil compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
                 self.warningIconImageView.image = [warningImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
                 self.warningIconImageView.tintColor = [UIColor ubk_warningLevelHighBackgroundColour];
                 break;
             }
             case UBKAccessibilityWarningLevelMedium:
             {
-                UIImage *warningImage = [UIImage imageNamed:kUBKAccessibilityWarningLevelImageNameMedium inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
+                UIImage *warningImage = [UIImage imageNamed:kUBKAccessibilityWarningLevelImageNameMedium inBundle:nil compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
                 self.warningIconImageView.image = [warningImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
                 self.warningIconImageView.tintColor = [UIColor ubk_warningLevelMediumBackgroundColour];
                 break;
             }
             case UBKAccessibilityWarningLevelLow:
             {
-                UIImage *warningImage = [UIImage imageNamed:kUBKAccessibilityWarningLevelImageNameLow inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
+                UIImage *warningImage = [UIImage imageNamed:kUBKAccessibilityWarningLevelImageNameLow inBundle:nil compatibleWithTraitCollection:[UITraitCollection traitCollectionWithDisplayScale:[UIScreen mainScreen].scale]];
                 self.warningIconImageView.image = [warningImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
                 self.warningIconImageView.tintColor = [UIColor ubk_warningLevelLowBackgroundColour];
                 break;

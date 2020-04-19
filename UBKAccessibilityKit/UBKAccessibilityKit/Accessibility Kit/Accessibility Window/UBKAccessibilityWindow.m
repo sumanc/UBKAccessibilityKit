@@ -28,6 +28,7 @@
 #import "UBKAccessibilityReportViewController.h"
 #import "UBKAccessibilityFilter.h"
 #import "UIView+HelperMethods.h"
+#import "UBKAccessibilityWindow.h"
 
 @interface UBKAccessibilityWindow () <UIScreenshotServiceDelegate>
 @property (nonatomic) BOOL passTouchToWindow;
@@ -38,11 +39,26 @@
 @property (nonatomic) NSString *currentViewName;
 @end
 
-@implementation UBKAccessibilityWindow
+@implementation UBKAccessibilityWindow {
 
-//The entry point into the class. becomeKeyWindow is called when the window has become the main(key) window.
-- (void)becomeKeyWindow
-{
+}
+
++ (UBKAccessibilityWindow *)sharedInstance {
+    static UBKAccessibilityWindow *kWindow;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        kWindow = [[UBKAccessibilityWindow alloc] init];
+    });
+    return kWindow;
+}
+
+- (void)viewAppeared {
+    [[self.inspectorButton superview] bringSubviewToFront:self.inspectorButton];
+}
+
+- (void)becameKeyWindow:(UIWindow *)window {
+    self.enableInspector = YES;
+    _mainWindow = window;
     if (!self.enableInspector)
     {
         [super becomeKeyWindow];
@@ -56,6 +72,12 @@
     [self changeInspectorStatus];
     [self configureAccessibilityTouchAnimations];
     [self configureScreenshotService];
+}
+
+//The entry point into the class. becomeKeyWindow is called when the window has become the main(key) window.
+- (void)becomeKeyWindow
+{
+    [self becameKeyWindow:self];
 }
 
 - (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection
@@ -75,7 +97,7 @@
     
     if (!self.inspectorButton)
     {
-        self.inspectorButton = [[UBKAccessibilityButton alloc]initWithFrame:CGRectMake(40, self.frame.size.height/2-50, 50, 50)];
+        self.inspectorButton = [[UBKAccessibilityButton alloc]initWithFrame:CGRectMake(40, _mainWindow.frame.size.height/2-50, 50, 50)];
     }
     else
     {
@@ -83,8 +105,8 @@
     }
     self.inspectorButton.accessibilityLabel = @"Inspector";
     self.inspectorButton.accessibilityTraits |= UIAccessibilityTraitButton;
-    [self updateInspectorButtonLocation:CGPointMake(40, self.frame.size.height/2-50)];
-    [self addSubview:self.inspectorButton];
+    [self updateInspectorButtonLocation:CGPointMake(40, _mainWindow.frame.size.height/2-50)];
+    [_mainWindow addSubview:self.inspectorButton];
 }
 
 - (void)configureAccessibilityTouchAnimations
@@ -131,7 +153,7 @@
 {
     //Should look at adding hot corners and making the button pin to the sides of the view. At the moment it can be moved any where
     CGFloat gutter = 80;
-    CGRect customFrame = CGRectMake(self.frame.origin.x + (gutter / 2), self.frame.origin.y + gutter, self.frame.size.width - gutter, self.frame.size.height - (gutter * 2));
+    CGRect customFrame = CGRectMake(_mainWindow.frame.origin.x + (gutter / 2), _mainWindow.frame.origin.y + gutter, _mainWindow.frame.size.width - gutter, _mainWindow.frame.size.height - (gutter * 2));
 
     //Check left and right gutters
     if (point.x < customFrame.origin.x)
@@ -157,8 +179,12 @@
 }
 
 //Called when a user touches any where within the UIWindow
-- (void)sendEvent:(UIEvent *)event
-{
+- (void)sendEvent:(UIEvent *)event {
+    [self sendEvent:event source:self];
+}
+
+- (BOOL)sendEvent:(UIEvent *)event source:(UIWindow *)source {
+    BOOL handled = YES;
     // Collect touches
     NSSet *touches = [event allTouches];
     
@@ -178,7 +204,7 @@
     if ((!self.enableInspector) || ([UBKAccessibilityManager sharedInstance].alertOnScreenAllowTouchEvents) || [self.rootViewController.presentedViewController isKindOfClass:[UIAlertController class]])
     {
         [super sendEvent:event];
-        return;
+        return NO;
     }
     
     NSMutableSet *began = nil;
@@ -201,7 +227,7 @@
                 [began addObject:touch];
                 
                 //Save this to compare if the user has dragged on screen.
-                self.startPoint = [touch locationInView:self];
+                self.startPoint = [touch locationInView:_mainWindow];
                 
                 //Has touched within the inspector button so we must be moving it or we have tapped it.
                 if ([self checkTouchPoint:touch withInView:self.inspectorButton])
@@ -299,7 +325,12 @@
     if (([UBKAccessibilityManager sharedInstance].allowNormalTouchEvents) || (self.passTouchToWindow == TRUE))
     {
         //Has touched within the inspector container view or allow normal (inspector turned off) touches on window.
-        [super sendEvent:event];
+        if ([source isKindOfClass:[UBKAccessibilityWindow class]]) {
+            [super sendEvent:event];
+        }
+        else {
+            handled = NO;
+        }
     }
     else
     {
@@ -334,6 +365,7 @@
             [[UBKAccessibilityManager sharedInstance]showInspector:true];
         }
     }
+    return handled;
 }
 
 #pragma mark - Touch validation methods
@@ -443,7 +475,7 @@
 {
     if (@available(iOS 13.0, *))
     {
-        self.windowScene.screenshotService.delegate = self;
+        _mainWindow.windowScene.screenshotService.delegate = self;
     }
     else
     {
@@ -472,7 +504,7 @@
     
     NSArray *elements = [UBKAccessibilityManager sharedInstance].accessibilityFilter.filteredObjects;
     
-    UBKAccessibilityReportViewController *viewController = [[UBKAccessibilityReportViewController alloc]initWithNibName:@"UBKAccessibilityReportViewController" bundle:[NSBundle bundleForClass:self.class]];
+    UBKAccessibilityReportViewController *viewController = [[UBKAccessibilityReportViewController alloc]initWithNibName:@"UBKAccessibilityReportViewController" bundle:nil];
     viewController.classString = viewControllerString;
     viewController.appNameString = appName;
     viewController.viewControllerImage = viewControllerImage;
